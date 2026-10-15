@@ -111,11 +111,7 @@ The cube consists of 27 smaller cubes arranged in a 3 × 3 × 3 structure.
 
 The timer supports manual Start, Stop, Resume and Reset actions. It displays elapsed time in `MM:SS.CC` format.
 
-## ⚠️ Current Limitations
 
-- Automatic cube solving is not implemented.
-- The timer does not automatically detect when a solve is complete.
-- Move history is not saved permanently.
 
 ## 🚀 Future Improvements
 
