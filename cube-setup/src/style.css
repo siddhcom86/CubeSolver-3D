@@ -1,0 +1,409 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
+
+:root {
+    font-family: 'Inter', sans-serif;
+    color: #f1f5f9;
+    background: #0b1020;
+    font-synthesis: none;
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    min-width: 320px;
+    min-height: 100vh;
+    background:
+        radial-gradient(ellipse at top, #182747 0%, #0b1020 55%);
+}
+
+#app {
+    width: min(1120px, 100%);
+    margin: 0 auto;
+    padding: 32px 24px 48px;
+}
+
+/* Header */
+header {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+header h1 {
+    margin: 0;
+    font-size: clamp(2rem, 5vw, 3.4rem);
+    font-weight: 800;
+    letter-spacing: -1.5px;
+    background: linear-gradient(90deg, #67e8f9, #818cf8, #c084fc);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+}
+
+header p {
+    color: #94a3b8;
+    margin: 12px 0 0;
+    font-size: 1rem;
+}
+
+/* 3D Cube */
+#cube-view {
+    width: 100%;
+    height: 430px;
+    overflow: hidden;
+    border: 1px solid #293650;
+    border-radius: 24px;
+    background: linear-gradient(145deg, #131d33, #0e1527);
+    box-shadow: 0 20px 60px #00000030;
+}
+
+#cube-view canvas {
+    display: block;
+    width: 100%;
+    height: 100%;
+}
+
+/* Main controls */
+.controls {
+    margin-top: 28px;
+    padding: 26px;
+    background: #131c2f;
+    border: 1px solid #293650;
+    border-radius: 22px;
+    box-shadow: 0 16px 40px #00000020;
+}
+
+.controls h2,
+.history-panel h2 {
+    margin: 0 0 18px;
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: #e2e8f0;
+}
+
+.buttons {
+    display: grid;
+    grid-template-columns: repeat(9, minmax(0, 1fr));
+    gap: 10px;
+}
+
+button {
+    font: inherit;
+    font-weight: 600;
+    color: #e2e8f0;
+    background: #0e1218;
+    border: 1px solid #344563;
+    border-radius: 10px;
+    padding: 12px 10px;
+    cursor: pointer;
+    transition:
+        transform 150ms ease,
+        background 150ms ease,
+        border-color 150ms ease;
+}
+
+.buttons button:hover {
+    background: #2d6f50;
+    border-color: #67e8f9;
+    transform: translateY(-2px);
+}
+
+button:active {
+    transform: scale(0.97);
+}
+
+button:disabled {
+    opacity: 0.45;
+    cursor: not-allowed;
+    transform: none;
+}
+
+#status {
+    margin: 20px 0 0;
+    padding: 12px 15px;
+    border-radius: 10px;
+    background: #0c111c;
+    border: 1px solid #263751;
+    color: #67e8f9;
+    font-size: 0.9rem;
+}
+
+/* History panel */
+.history-panel {
+    margin-top: 25px;
+    padding-top: 24px;
+    border-top: 1px solid #293650;
+}
+
+#history {
+    min-height: 46px;
+    margin: 0 0 16px;
+    padding: 14px;
+    overflow-wrap: anywhere;
+    line-height: 1.8;
+    border-radius: 10px;
+    background: #0b1324;
+    border: 1px solid #263751;
+    color: #cbd5e1;
+}
+
+#undo-btn,
+#reset-history-btn,
+#reset-cube-btn,
+#scramble-btn {
+    margin: 4px 5px 4px 0;
+}
+
+#undo-btn {
+    background: #2563eb;
+    border-color: #3b82f6;
+}
+
+#undo-btn:hover {
+    background: #1d4ed8;
+}
+
+#scramble-btn {
+    background: #7c3aed;
+    border-color: #8b5cf6;
+}
+
+#scramble-btn:hover {
+    background: #6d28d9;
+}
+
+#reset-cube-btn {
+    background: #9f1239;
+    border-color: #be123c;
+}
+
+#reset-cube-btn:hover {
+    background: #881337;
+}
+
+/* Solve Timer */
+.timer-panel {
+    max-width: 460px;
+    margin: 24px auto 0;
+    padding: 24px;
+    text-align: center;
+    background: linear-gradient(145deg, #172641, #111a2d);
+    border: 1px solid #344563;
+    border-radius: 20px;
+    box-shadow: 0 14px 36px #00000025;
+}
+
+.timer-panel h2 {
+    margin: 0;
+    color: #e2e8f0;
+    font-size: 1.2rem;
+}
+
+#timer-display {
+    margin: 22px 0;
+    color: #67e8f9;
+    font-family: monospace;
+    font-size: clamp(2.2rem, 7vw, 3.2rem);
+    font-weight: 700;
+    font-variant-numeric: tabular-nums;
+}
+
+.timer-buttons {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.timer-buttons button {
+    min-width: 100px;
+    background: #263957;
+    border-color: #405777;
+}
+
+#timer-start-btn {
+    background: #047857;
+    border-color: #059669;
+}
+
+#timer-start-btn:hover {
+    background: #065f46;
+}
+
+#timer-stop-btn {
+    background: #b45309;
+    border-color: #d97706;
+}
+
+#timer-stop-btn:hover {
+    background: #92400e;
+}
+
+#timer-reset-btn:hover {
+    background: #405777;
+}
+
+/* Responsive layout */
+@media (max-width: 760px) {
+    #app {
+        padding: 24px 14px 32px;
+    }
+
+    #cube-view {
+        height: 340px;
+        border-radius: 18px;
+    }
+
+    .controls {
+        padding: 18px 14px;
+    }
+
+    .buttons {
+        grid-template-columns: repeat(6, minmax(0, 1fr));
+        gap: 8px;
+    }
+
+    .buttons button {
+        padding: 12px 4px;
+    }
+
+    .history-panel button {
+        margin-bottom: 8px;
+    }
+}
+
+@media (max-width: 400px) {
+    #cube-view {
+        height: 290px;
+    }
+
+    .buttons {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+
+    .timer-panel {
+        padding: 18px 12px;
+    }
+}
+
+/* Move Notation Guide */
+.notation-panel,
+.features-panel {
+    margin-top: 28px;
+    padding: 26px;
+    background: #131c2f;
+    border: 1px solid #293650;
+    border-radius: 22px;
+}
+
+.notation-panel h2,
+.features-panel h2 {
+    margin: 0 0 10px;
+    color: #e2e8f0;
+    font-size: 1.3rem;
+}
+
+.section-description {
+    margin: 0 0 20px;
+    color: #94a3b8;
+    line-height: 1.6;
+}
+
+.notation-grid,
+.features-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 14px;
+}
+
+.notation-card,
+.feature-card {
+    padding: 18px;
+    background: #0e1729;
+    border: 1px solid #293650;
+    border-radius: 14px;
+    transition: transform 160ms ease, border-color 160ms ease;
+}
+
+.notation-card:hover,
+.feature-card:hover {
+    transform: translateY(-3px);
+    border-color: #67e8f9;
+}
+
+.notation-symbol {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 42px;
+    height: 42px;
+    border-radius: 10px;
+    background: #203958;
+    color: #67e8f9;
+    font-size: 1.3rem;
+    font-weight: 800;
+}
+
+.notation-card h3,
+.feature-card h3 {
+    margin: 12px 0 8px;
+    color: #f1f5f9;
+    font-size: 1rem;
+}
+
+.notation-card p,
+.feature-card p {
+    margin: 0;
+    color: #aab8ce;
+    font-size: 0.88rem;
+    line-height: 1.65;
+}
+
+.notation-notes {
+    margin-top: 18px;
+    padding: 14px 18px;
+    background: #0b1324;
+    border-radius: 12px;
+    color: #cbd5e1;
+    font-size: 0.9rem;
+    line-height: 1.7;
+}
+
+.notation-notes p {
+    margin: 5px 0;
+}
+
+.feature-icon {
+    font-size: 1.8rem;
+}
+
+@media (max-width: 700px) {
+    .notation-panel,
+    .features-panel {
+        padding: 18px 14px;
+    }
+
+    .notation-grid,
+    .features-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 10px;
+    }
+
+    .notation-card,
+    .feature-card {
+        padding: 14px;
+    }
+}
+
+@media (max-width: 400px) {
+    .notation-grid,
+    .features-grid {
+        grid-template-columns: 1fr;
+    }
+}
